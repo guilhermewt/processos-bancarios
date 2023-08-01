@@ -1,0 +1,114 @@
+classes
+
+conta 
+id
+nomeresponsavel
+saldo
+
+transferencia
+id
+datatransferencia
+valor 
+tipo DEPOSITO,SAQUE,TRANSFERENCIA
+nome operador
+conta manyToOne
+
+
+-- logica principal para filtrar os dados
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@Service
+public class TransferenciaService {
+
+    private final TransferenciaRepository transferenciaRepository;
+
+    @Autowired
+    public TransferenciaService(TransferenciaRepository transferenciaRepository) {
+        this.transferenciaRepository = transferenciaRepository;
+    }
+
+    public List<Transferencia> obterTransferencias(String numeroConta, LocalDate dataInicio, LocalDate dataFim, String nomeOperador) {
+        if (dataInicio == null && dataFim == null && nomeOperador == null) {
+            return transferenciaRepository.findBycontaId(); //findAll
+        }
+
+        if (dataInicio != null && dataFim != null && nomeOperador != null) {
+            return transferenciaRepository.findByContaIdAndDataInicioAndDataFimAndNomeOperador(long conta,dataInicio, dataFim, nomeOperador);
+        }
+
+        if (dataInicio != null && dataFim != null) {
+            return transferenciaRepository.findByContaIdAndDataInicioAndDataFim(dataInicio, dataFim);
+        }
+
+        if (nomeOperador != null) {
+            return transferenciaRepository.findByContaIdAndNomeOperador(long id,nomeOperador);
+        }
+
+        return transferenciaRepository.findAll();
+    }
+}
+
+
+calcular saldo total
+- se for deposito ou t-entrada soma caso aocontrario subtrair na classe conta
+- saldo no periodo a mesma coisa
+
+
+   private void calcularSaldos(List<Transferencia> transferencias) {
+        double saldoTotal = 0;
+        double saldoPeriodo = 0;
+
+        for (Transferencia transferencia : transferencias) {
+            double valor = transferencia.getValor();
+            saldoTotal += valor;
+
+            LocalDate dataTransferencia = transferencia.getDataInicioTransferencia();
+            if (dataTransferencia.isAfter(dataInicio) || dataTransferencia.isEqual(dataInicio)) {
+                if (dataTransferencia.isBefore(dataFim) || dataTransferencia.isEqual(dataFim)) {
+                    saldoPeriodo += valor;
+                }
+            }
+        }
+
+        for (Transferencia transferencia : transferencias) {
+            transferencia.setSaldoTotal(saldoTotal);
+            transferencia.setSaldoPeriodo(saldoPeriodo);
+        }
+    }
+    
+calcular saldo no periodo
+
+service
+public Map<Double, List<Transferencia>> calcularSaldoETransferenciasDoPeriodo(Date startDate, Date endDate) {
+        List<Transferencia> transferencias = transferenciaRepository.findByDataBetween(startDate, endDate);
+        double saldo = 0.0;
+        Map<Double, List<Transferencia>> resultado = new HashMap<>();
+
+        for (Transferencia transferencia : transferencias) {
+            if (transferencia.getTipo().equals("DEBITO")) {
+                saldo -= transferencia.getValor();
+            } else {
+                saldo += transferencia.getValor();
+            }
+        }
+
+        resultado.put(saldo, transferencias);
+        return resultado;
+    }
+    
+controller
+ @GetMapping("/transferencias")
+    public ResponseEntity<Map<Double, List<Transferencia>>> getTransferenciasPorPeriodo(
+            @RequestParam("startDate") Date startDate,
+            @RequestParam("endDate") Date endDate
+    ) {
+        Map<Double, List<Transferencia>> resultado = transferenciaService.calcularSaldoETransferenciasDoPeriodo(startDate, endDate);
+        return ResponseEntity.ok(resultado);
+    }        
+
+2019-01-01T07:00-02:00
