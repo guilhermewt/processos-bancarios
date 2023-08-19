@@ -1,0 +1,9 @@
+/home/guilherme/javeiro/clean archtecture/processos-bancarios/core/src/main/java/br/com/bank/useCase/AccountService.java
+/home/guilherme/javeiro/clean archtecture/processos-bancarios/core/src/main/java/br/com/bank/contracts/AccountRepository.java
+/home/guilherme/javeiro/clean archtecture/processos-bancarios/core/src/main/java/br/com/bank/entities/Transfer.java
+/home/guilherme/javeiro/clean archtecture/processos-bancarios/core/src/main/java/br/com/bank/entities/Account.java
+/home/guilherme/javeiro/clean archtecture/processos-bancarios/core/src/main/java/br/com/bank/contracts/exceptions/BadRequestException.java
+/home/guilherme/javeiro/clean archtecture/processos-bancarios/core/src/main/java/br/com/bank/useCase/TransferService.java
+/home/guilherme/javeiro/clean archtecture/processos-bancarios/core/src/main/java/br/com/bank/entities/enums/TypeTransfer.java
+/home/guilherme/javeiro/clean archtecture/processos-bancarios/core/src/main/java/br/com/bank/requests/GetTransferSearch.java
+/home/guilherme/javeiro/clean archtecture/processos-bancarios/core/src/main/java/br/com/bank/contracts/TransferRepository.java
