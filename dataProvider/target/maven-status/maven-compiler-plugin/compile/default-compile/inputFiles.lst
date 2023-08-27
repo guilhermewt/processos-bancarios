@@ -1,6 +1,0 @@
-/home/guilherme/javeiro/clean archtecture/processos-bancarios/dataProvider/src/main/java/br/com/bank/repository/TransferDao.java
-/home/guilherme/javeiro/clean archtecture/processos-bancarios/dataProvider/src/main/java/br/com/bank/repository/mapper/TransferMapper.java
-/home/guilherme/javeiro/clean archtecture/processos-bancarios/dataProvider/src/main/java/br/com/bank/repository/entities/CountEntityBD.java
-/home/guilherme/javeiro/clean archtecture/processos-bancarios/dataProvider/src/main/java/br/com/bank/repository/entities/TransferEntityBD.java
-/home/guilherme/javeiro/clean archtecture/processos-bancarios/dataProvider/src/main/java/br/com/bank/repository/entities/enums/TypeTransfer.java
-/home/guilherme/javeiro/clean archtecture/processos-bancarios/dataProvider/src/main/java/br/com/bank/repository/TransferRepositoryImpl.java

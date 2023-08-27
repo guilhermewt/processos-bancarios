@@ -1,9 +1,0 @@
-br/com/bank/contracts/AccountRepository.class
-br/com/bank/useCase/AccountService.class
-br/com/bank/contracts/exceptions/BadRequestException.class
-br/com/bank/requests/GetTransferSearch.class
-br/com/bank/contracts/TransferRepository.class
-br/com/bank/entities/Transfer.class
-br/com/bank/useCase/TransferService.class
-br/com/bank/entities/enums/TypeTransfer.class
-br/com/bank/entities/Account.class

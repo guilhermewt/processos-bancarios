@@ -1,8 +1,0 @@
-br/com/bank/repository/TransferDao.class
-br/com/bank/repository/entities/TransferEntityBD.class
-br/com/bank/repository/mapper/TransferMapperImpl$1.class
-br/com/bank/repository/mapper/TransferMapperImpl.class
-br/com/bank/repository/mapper/TransferMapper.class
-br/com/bank/repository/entities/CountEntityBD.class
-br/com/bank/repository/TransferRepositoryImpl.class
-br/com/bank/repository/entities/enums/TypeTransfer.class
